@@ -25,7 +25,7 @@ class request():
 		""" returns time requested """
 		return self.time
 
-	def set_future_date(self):
+	def set_future(self):
 		""" 
 			Used for setting future date
 			sets today to False to indicate

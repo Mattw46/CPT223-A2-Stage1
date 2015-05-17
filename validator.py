@@ -6,6 +6,7 @@
 import request
 import locations
 import day
+import datetime
 
 """ validates data and creates request object """
 def validate(input):
@@ -40,9 +41,9 @@ def validate(input):
 			print "Valid day"
 			day_of_week = input[2].title()
 			#validate time
-			print input
-			print len(input)
-			print input[len(input) -1]
+			#print input
+			#print len(input)
+			#print input[len(input) -1]
 			time = input[len(input) - 1]
 			#print "time: " + time
 			if (day.valid_time(time)):
@@ -51,6 +52,17 @@ def validate(input):
 				return None
 			#create and return req obj
 			req = request.request("Geelong", "5:00pm")
+
+			# add day to req
+			print "day of week"
+			today = day.get_day(datetime.datetime.today().weekday()) 
+			if (today != day_of_week):  # need to consider day of week past ie for mon but its wed
+				print "not today - adding future details"
+				req.set_future()
+				req.set_day_of_week(day_of_week)
+			else:
+				print "today no changes" # remove else before submission
+
 			return req
 		elif (day.valid_specifier(input[2].title())):
 			"""
@@ -60,9 +72,9 @@ def validate(input):
 			print "Valid specifier"
 			day_of_week = input[2].title()
 			#validate time
-			print input
-			print len(input)
-			print input[len(input) -1]
+			#print input
+			#print len(input)
+			#print input[len(input) -1]
 			time = input[len(input) - 1]
 			#print "time: " + time
 			if (day.valid_time(time)):
@@ -71,13 +83,26 @@ def validate(input):
 				return None
 			#create and return req obj
 			req = request.request("Geelong", "5:00pm")
+
+			# add day to req
+			print "day of week"
+			print day_of_week
+			day_of_week = day.get_specified(day_of_week)
+			today = day.get_day(datetime.datetime.today().weekday()) 
+			if (today != day_of_week):  # need to consider day of week past ie for mon but its wed
+				print "not today - adding future details"
+				req.set_future()
+				req.set_day_of_week(day_of_week)
+			else:
+				print "today no changes" # remove else before submission
+
 			return req
 		elif (day.valid_time(input[2])):
 			"""
 				Handle Format:
 				 "melbourne central" 5:20pm
 			"""
-			print "basic request"
+			#print "basic request"
 			time = input[2]
 			req = request.request(destination, time)
 			return req

@@ -19,4 +19,8 @@ if (request == None):
 print request.get_location()
 print request.get_time()
 
+# testing scenario 2
+#print request.get_day_of_week()
+#print request.is_today()
+
 # call get weather, get a weather object back, None if error getting data
