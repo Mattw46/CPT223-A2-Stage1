@@ -6,8 +6,6 @@
 import sys
 import validator
 
-
-
 """ Main Section """
 
 # call validator, get a request object back with valid data else None
