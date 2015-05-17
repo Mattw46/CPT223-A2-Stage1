@@ -15,4 +15,8 @@ if (request == None):
 	print "invalid request"
 	exit
 
+# testing
+print request.get_location()
+print request.get_time()
+
 # call get weather, get a weather object back, None if error getting data

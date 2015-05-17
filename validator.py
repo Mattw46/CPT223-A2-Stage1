@@ -79,7 +79,7 @@ def validate(input):
 			"""
 			print "basic request"
 			time = input[2]
-			req = request.request("Geelong", "5:00pm")
+			req = request.request(destination, time)
 			return req
 		else:
 			"""
