@@ -8,60 +8,32 @@
 class request():
 	location = None
 	time = None
-	today = True
-	day = None
-	date = None
+	today = True # assumes current day
+	days_from_current = 0
 
 	def __init__(self, loc, ti):
 		""" Initialise basic information"""
 		self.location = loc
 		self.time = ti
 
-	def get_location(self):
-		""" returns location requested """
-		return self.location
-
-	def get_time(self):
-		""" returns time requested """
-		return self.time
+	def is_future(self):
+		""" sets today to False
+			date will be considered future date
+		"""
+		today = False
 
 	def set_future(self):
-		""" 
-			Used for setting future date
-			sets today to False to indicate
-			date is in the future
-		"""
-		self.today = False
+		today = False
+
+
+	def set_days_from_now(self, days):
+		""" set number days from current day """
+		days_from_current = days
+
+	def get_days_from_now(self):
+		return days_from_current
 
 	def is_today(self):
-		""" 
-			checks if request is for current day
-			True if for current day
-			False for future day
-		"""
-		return self.today
+		return today
 
-	def set_day_of_week(self, day):
-		self.day = day
-
-	def get_day_of_week(self):
-		""" 
-			returns day of week requested 
-			option function for future dates
-		"""
-		return self.day
-
-	def set_date(self, date):
-		""" 
-			sets date requested 
-			option function for future dates
-		"""
-		self.date = date
-
-	def get_date(self):
-		""" 
-			returns date requested 
-			option function for future dates
-		"""
-		return self.date
-
+########################################################################
